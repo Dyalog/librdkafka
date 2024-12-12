@@ -1397,7 +1397,8 @@ function mkl_compile_check {
         cflags="$(mkl_mkvar_get CFLAGS)"
     fi
 
-    local srcfile=$(mktemp _mkltmpXXXXXX)
+    local srcfile=_mkltmp-$(od -N4 -tu /dev/random | awk 'NR==1 {print $2} {}')
+    touch "$srcfile"
     mv "$srcfile" "${srcfile}.$ext"
     srcfile="$srcfile.$ext"
     echo "$6" > $srcfile

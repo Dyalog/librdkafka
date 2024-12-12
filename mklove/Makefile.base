@@ -19,7 +19,7 @@ TOPDIR = $(MKLOVE_DIR:mklove/=.)
 LIBNAME0=$(LIBNAME:lib%=%)
 
 # Silence lousy default ARFLAGS (rv)
-ARFLAGS=
+#ARFLAGS=
 
 ifndef MKL_MAKEFILE_CONFIG
 -include $(TOPDIR)/Makefile.config
@@ -115,7 +115,7 @@ endif
 
 $(LIBNAME).a:	$(OBJS)
 	@printf "$(MKL_YELLOW)Creating static library $@$(MKL_CLR_RESET)\n"
-	$(AR) rcs$(ARFLAGS) $@ $(OBJS)
+	$(AR) $(ARFLAGS) rcs $@ $(OBJS)
 	cp $@ $(LIBNAME)-dbg.a
 ifeq ($(WITH_STRIP),y)
 	$(STRIP) -S $@
